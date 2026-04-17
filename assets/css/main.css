@@ -18744,7 +18744,9 @@ footer {
     position: relative;
     overflow: hidden;
     /* margin-top: 80px; */
-  
+  p{
+    color: #fff;
+  }
     .footer-decoration {
       position: absolute;
       top: 0;
