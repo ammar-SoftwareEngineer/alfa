@@ -132,6 +132,41 @@ animateBars();
     });
 
 
+    function initAlfaMobileNavigation() {
+        var $root = $("#header");
+        var $menu = $root.find(".mobile-menu-items").first();
+        var $mount = $("#alfa-mobile-nav-mount");
+        if (!$menu.length || !$mount.length || $root.data("alfaMeanmenu")) {
+            return;
+        }
+        $root.data("alfaMeanmenu", true);
+        $menu.meanmenu({
+            meanMenuContainer: "#alfa-mobile-nav-mount",
+            meanScreenWidth: "992",
+            meanMenuCloseSize: "30px",
+            meanExpand: ['<i class="fa-solid fa-caret-down"></i>']
+        });
+        setTimeout(function () {
+            $("#alfa-mobile-nav-mount .mean-nav > ul").first().css("display", "block");
+        }, 0);
+    }
+
+    function setMobileMenuOpen(open) {
+        $(".mobile-side-menu, .mobile-side-menu-overlay").toggleClass("is-open", !!open);
+        $("body").toggleClass("mobile-menu-open", !!open);
+        $(".mobile-side-menu-toggle").attr("aria-expanded", open ? "true" : "false");
+        if (open) {
+            $("#alfa-mobile-nav-mount .mean-nav > ul").first().css("display", "block");
+        }
+    }
+
+    $(document).ajaxComplete(function (_event, _xhr, settings) {
+        var url = (settings && settings.url) || "";
+        if (/header\.html/i.test(url)) {
+            setTimeout(initAlfaMobileNavigation, 0);
+        }
+    });
+
     $(document).ready(function () {
 
         // Image Comparison Slider
@@ -179,23 +214,34 @@ animateBars();
             menuSticky(minWidth);
         }
 
-        //Mobile Menu Js
-        if ($(".mobile-menu-items").length) {
-            $(".mobile-menu-items").meanmenu({
-                meanMenuContainer: ".side-menu-wrap",
-                meanScreenWidth: "992",
-                meanMenuCloseSize: "30px",
-                meanExpand: ['<i class="fa-solid fa-caret-down"></i>']
-            });
-        }
+        initAlfaMobileNavigation();
 
-        // Mobile Sidemenu
-        $(".mobile-side-menu-toggle").on("click", function () {
-            $(".mobile-side-menu, .mobile-side-menu-overlay").toggleClass("is-open");
+        $(document).on("click", ".mobile-side-menu-toggle", function (e) {
+            e.preventDefault();
+            var open = !$(".mobile-side-menu").hasClass("is-open");
+            setMobileMenuOpen(open);
         });
 
-        $(".mobile-side-menu-close, .mobile-side-menu-overlay").on("click", function () {
-            $(".mobile-side-menu, .mobile-side-menu-overlay").removeClass("is-open");
+        $(document).on("click", ".mobile-side-menu-close, .mobile-side-menu-overlay", function () {
+            setMobileMenuOpen(false);
+        });
+
+        $(document).on("click", ".mobile-side-menu .mean-nav a", function (e) {
+            var $a = $(this);
+            if ($a.hasClass("mean-expand")) {
+                return;
+            }
+            var href = ($a.attr("href") || "").trim();
+            if (href === "" || href === "#" || href === "#nav") {
+                return;
+            }
+            setMobileMenuOpen(false);
+        });
+
+        $(window).on("resize", function () {
+            if (window.matchMedia("(min-width: 993px)").matches) {
+                setMobileMenuOpen(false);
+            }
         });
 
         // Popup Search Box
@@ -246,7 +292,7 @@ animateBars();
         venoboxInit();
 
         // Data Background
-        $("[data-background").each(function () {
+        $("[data-background]").each(function () {
             $(this).css("background-image", "url( " + $(this).attr("data-background") + "  )");
         });
 
@@ -701,7 +747,7 @@ animateBars();
             spaceBetween: 24,
             slidesPerGroup: 1,
             loop: true,
-            autoplay: false,
+            autoplay: { delay: 3000 },
             grabcursor: true,
             speed: 800,
             breakpoints: {
@@ -1423,58 +1469,78 @@ animateBars();
 
         let fadeArray_items = document.querySelectorAll(".slide-anim");
         if (fadeArray_items.length > 0) {
-            const fadeArray = gsap.utils.toArray(".slide-anim")
-            fadeArray.forEach((item, i) => {
-            var fade_direction = "bottom"
-            var onscroll_value = 1
-            var duration_value = 1.15
-            var fade_offset = 50
-            var delay_value = 0.15
-            var ease_value = "power2.out"
-            if (item.getAttribute("data-offset")) {
-                fade_offset = item.getAttribute("data-offset");
-            }
-            if (item.getAttribute("data-duration")) {
-                duration_value = item.getAttribute("data-duration");
-            }
-            if (item.getAttribute("data-direction")) {
-                fade_direction = item.getAttribute("data-direction");
-            }
-            if (item.getAttribute("data-on-scroll")) {
-                onscroll_value = item.getAttribute("data-on-scroll");
-            }
-            if (item.getAttribute("data-delay")) {
-                delay_value = item.getAttribute("data-delay");
-            }
-            if (item.getAttribute("data-ease")) {
-                ease_value = item.getAttribute("data-ease");
-            }
-            let animation_settings = {
-                opacity: 0,
-                ease: ease_value,
-                duration: duration_value,
-                delay: delay_value,
-            }
-            if (fade_direction == "top") {
-                animation_settings['y'] = -fade_offset
-            }
-            if (fade_direction == "left") {
-                animation_settings['x'] = -fade_offset;
-            }
-            if (fade_direction == "bottom") {
-                animation_settings['y'] = fade_offset;
-            }
-            if (fade_direction == "right") {
-                animation_settings['x'] = fade_offset;
-            }
-            if (onscroll_value == 1) {
-                animation_settings['scrollTrigger'] = {
-                trigger: item,
-                start: 'top 85%',
+            const fadeArray = gsap.utils.toArray(".slide-anim");
+            fadeArray.forEach(function (item) {
+                var fade_direction = "bottom";
+                var onscroll_value = 1;
+                var duration_value = 1.15;
+                var fade_offset = 50;
+                var delay_value = 0.15;
+                var ease_value = "power2.out";
+                if (item.getAttribute("data-offset")) {
+                    fade_offset = item.getAttribute("data-offset");
                 }
-            }
-                gsap.from(item, animation_settings);
-            })
+                if (item.getAttribute("data-duration")) {
+                    duration_value = item.getAttribute("data-duration");
+                }
+                if (item.getAttribute("data-direction")) {
+                    fade_direction = item.getAttribute("data-direction");
+                }
+                if (item.getAttribute("data-on-scroll")) {
+                    onscroll_value = item.getAttribute("data-on-scroll");
+                }
+                if (item.getAttribute("data-delay")) {
+                    delay_value = item.getAttribute("data-delay");
+                }
+                if (item.getAttribute("data-ease")) {
+                    ease_value = item.getAttribute("data-ease");
+                }
+                var off = parseFloat(fade_offset);
+                if (isNaN(off)) {
+                    off = 50;
+                }
+                /* Off-screen + hidden until ScrollTrigger; then slide in from data-direction
+                   (e.g. text left / image right). immediateRender keeps resting state before play. */
+                var fromVars = {
+                    autoAlpha: 0,
+                    force3D: true,
+                };
+                if (fade_direction === "top") {
+                    fromVars.y = -off;
+                } else if (fade_direction === "left") {
+                    fromVars.x = -off;
+                } else if (fade_direction === "bottom") {
+                    fromVars.y = off;
+                } else if (fade_direction === "right") {
+                    fromVars.x = off;
+                } else {
+                    fromVars.y = off;
+                }
+                var toVars = {
+                    autoAlpha: 1,
+                    duration: parseFloat(duration_value) || 1.15,
+                    delay: parseFloat(delay_value) || 0,
+                    ease: ease_value,
+                    overwrite: "auto",
+                    immediateRender: true,
+                };
+                if ("x" in fromVars) {
+                    toVars.x = 0;
+                }
+                if ("y" in fromVars) {
+                    toVars.y = 0;
+                }
+                if (onscroll_value == 1) {
+                    toVars.scrollTrigger = {
+                        trigger: item,
+                        start: "top bottom-=100px",
+                        toggleActions: "play none none none",
+                        once: true,
+                        fastScrollEnd: true,
+                    };
+                }
+                gsap.fromTo(item, fromVars, toVars);
+            });
         }
         
         window.addEventListener("load", (event) => {
