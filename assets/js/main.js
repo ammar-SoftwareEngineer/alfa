@@ -558,7 +558,7 @@ animateBars();
             spaceBetween: 24,
             slidesPerGroup: 1,
             loop: true,
-            autoplay: false,
+            autoplay: { delay: 3000 },
             grabcursor: true,
             speed: 800,
             breakpoints: {
@@ -581,8 +581,8 @@ animateBars();
             slidesPerView: 2,
             spaceBetween: 24,
             slidesPerGroup: 1,
-            loop: false,
-            autoplay: false,
+            loop: true,
+            autoplay: { delay: 3000 },
             grabcursor: true,
             speed: 800,
             breakpoints: {
