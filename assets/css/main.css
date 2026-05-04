@@ -5008,14 +5008,14 @@ ul {
 }
 
 .antra-slider .slider-item .bg-img:before {
-
+background-color: #100801;
     content: "";
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-
+    opacity: .4;
 }
 
 .slider-content-wrap {
@@ -5025,7 +5025,7 @@ ul {
 
 @media(max-width: 1399px) {
     .slider-content-wrap {
-        padding-bottom: 200px
+       
     }
 }
 
@@ -5037,8 +5037,8 @@ ul {
 
 @media only screen and (max-width: 992px) {
     .slider-content-wrap {
-        padding-top: 200px;
-        padding-bottom: 50px
+        padding-top: 400px !important;
+
     }
 }
 
@@ -5544,7 +5544,7 @@ ul {
 
 @media(max-width: 1199px) {
     .process-item .process-thumb {
-        height: 250px
+        height: 450px ;
     }
 }
 
@@ -5720,14 +5720,14 @@ ul {
 }
 
 .project-item .project-img:before {
-    background-color: var(--tl-color-common-black);
+
     content: "";
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    opacity: .11;
+
     z-index: 1
 }
 
