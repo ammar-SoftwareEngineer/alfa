@@ -1,117 +1,84 @@
 <div class="container">
-  <!-- Top Section -->
-  <div class="footer-top">
-    <div class="row g-4">
-      <!-- About Column -->
-      <div class="col-lg-4 col-md-6">
+  <!-- Almira-style: 3 columns — company story | contact | address + embedded map -->
+  <div class="footer-top px-md-5">
+    <div class="row g-4 g-lg-5 align-items-start">
+      <!-- 1) Brand + about (same role as Almira’s first column) -->
+      <div class="col-lg-4 col-md-12">
         <div class="footer-about">
-          <div class="footer-logo mb-5">
+          <h4 class="footer-title">Alfa Real Estate Development</h4>
+          <div class="footer-logo mb-4">
             <img
               src="./assets/images/logo/logo1.png"
               alt="Alfa Real Estate Development"
               width="160"
             />
           </div>
+          <p class="footer-description">
+            Alfa Urban Development is one of the leading real estate developers in New Cairo.
+            Since 2005, we have focused on premium locations, efficient layouts, and distinguished
+            classic facades—combining engineering expertise with consistent delivery.
+          </p>
           <div class="footer-social">
-            <a href="#" class="social-link"
+            <a href="#" class="social-link" aria-label="Facebook"
               ><i class="fab fa-facebook-f"></i
             ></a>
-            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link"
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" aria-label="LinkedIn"
               ><i class="fab fa-linkedin-in"></i
             ></a>
-            <a href="#" class="social-link"
+            <a href="#" class="social-link" aria-label="Pinterest"
               ><i class="fab fa-pinterest-p"></i
             ></a>
           </div>
         </div>
       </div>
 
-      <!-- Quick Links -->
-      <div class="col-lg-2 col-md-6">
-        <div class="footer-links">
-          <h4 class="footer-title">Quick Links</h4>
-          <ul class="links-list">
-            <li>
-              <a href="./index.html"><i class="fas fa-angle-right"></i> Home</a>
-            </li>
-            <li>
-              <a href="./about.html"><i class="fas fa-angle-right"></i> About Us</a>
-            </li>
-            <li>
-              <a href="./services.html"><i class="fas fa-angle-right"></i> Services</a>
-            </li>
-            <li>
-              <a href="./projects.html"><i class="fas fa-angle-right"></i> Projects</a>
-            </li>
-            <li>
-              <a href="./contact.html"><i class="fas fa-angle-right"></i> Contact</a>
-            </li>
-          </ul>
-        </div>
+      <!-- 2) Contact (same role as Almira’s «تواصل معنا») -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-title">Contact us</h4>
+        <ul class="footer-almira-contact">
+          <li>
+            <span>Phone</span>
+            <a href="tel:+201000713131">+20 100 071 3131</a>
+          </li>
+          <li>
+            <span>Email</span>
+            <a href="mailto:sales@alfadevelopment.com">sales@alfadevelopment.com</a>
+          </li>
+          <li>
+            <span>Sales &amp; visits</span>
+            <a href="./contact.html">Request a call or site visit</a>
+          </li>
+        </ul>
       </div>
 
-      <!-- Services -->
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-links">
-          <h4 class="footer-title">Our focus</h4>
-          <ul class="links-list">
-            <li>
-              <a href="./services.html"
-                ><i class="fas fa-angle-right"></i> Residential development</a
-              >
-            </li>
-            <li>
-              <a href="./services.html"
-                ><i class="fas fa-angle-right"></i> Smart layouts &amp; facades</a
-              >
-            </li>
-            <li>
-              <a href="./services.html"><i class="fas fa-angle-right"></i> Secure access systems</a>
-            </li>
-            <li>
-              <a href="./services.html"><i class="fas fa-angle-right"></i> Elevators &amp; parking</a>
-            </li>
-            <li>
-              <a href="./services.html"
-                ><i class="fas fa-angle-right"></i> Structural performance</a
-              >
-            </li>
-            <li>
-              <a href="./contact.html"><i class="fas fa-angle-right"></i> Sales &amp; aftercare</a>
-            </li>
-          </ul>
+      <!-- 3) Addresses + map in footer (same role as Almira’s «العناوين» + iframe) -->
+      <div class="col-lg-4 col-md-6">
+        <h4 class="footer-title">Addresses</h4>
+        <div class="footer-address-intro mb-3">
+          <p class="mb-2">
+            <strong class="d-block text-white mb-1">Our location</strong>
+            <a
+              href="https://www.google.com/maps/search/?api=1&amp;query=ALFA+DEVELOPMENT+New+Cairo"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-map-link"
+              >Fifth Settlement — New Cairo, Egypt</a
+            >
+          </p>
         </div>
-      </div>
-
-      <!-- Contact Info -->
-      <div class="col-lg-3 col-md-6">
-        <div class="footer-contact">
-          <h4 class="footer-title">Get In Touch</h4>
-          <ul class="contact-list">
-            <li>
-              <i class="fas fa-map-marker-alt"></i>
-              <div>
-                <strong>Address:</strong>
-                <a href="./contact.html" target="_blank">Fifth Settlement — New Cairo, Egypt</a>
-              </div>
-            </li>
-            <li>
-              <i class="fas fa-phone-alt"></i>
-              <div>
-                <strong>Phone:</strong>
-                <a href="tel:+201000000000" target="_blank">+20 100 000 0000</a>
-              </div>
-            </li>
-            <li>
-              <i class="fas fa-envelope"></i>
-              <div>
-                <strong>Email:</strong>
-                <a href="mailto:info@alfa-developments.com" target="_blank">info@alfa-developments.com</a>
-              </div>
-            </li>
-          </ul>
+        <div class="footer-map-embed">
+          <iframe
+            title="Map — Alfa Real Estate Development, New Cairo area"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3454.2026574608194!2d31.462195899999998!3d30.031043299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145823b37a0a64a9%3A0xe06d791f70fcc569!2sALFA%20DEVELOPMENT!5e0!3m2!1sar!2seg!4v1776004876213!5m2!1sar!2seg"
+            width="100%"
+            height="400"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -120,7 +87,6 @@
     <p class="mb-0">
       &copy; All Rights Reserved
       <strong class="second-color">Alfa Real Estate Development</strong>
-     
     </p>
   </div>
 </div>
